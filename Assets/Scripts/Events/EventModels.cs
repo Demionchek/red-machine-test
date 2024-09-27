@@ -6,6 +6,10 @@ namespace Events
     {
         public static class Game
         {
+            public struct ScrollStart : IEvent {
+
+            }
+
             public struct NodeTapped : IEvent
             {
                 

@@ -32,6 +32,8 @@ namespace Levels
             
             if (node != null)
                 EventsController.Fire(new EventModels.Game.NodeTapped());
+            else
+                EventsController.Fire(new EventModels.Game.ScrollStart());
         }
         
         private void OnPointerUp(Vector3 position)
