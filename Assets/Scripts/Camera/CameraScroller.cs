@@ -28,7 +28,12 @@ namespace Assets.Scripts.Camera
             base.Awake();
 
             _clickHandler = ClickHandler.Instance;
-            _clickHandler.SetDragEventHandlers(OnDragStart, OnDragEnd);
+            _clickHandler.AddDragEventHandlers(OnScrollStart, OnScrollEnd);
+        }
+
+        private void OnDestroy()
+        {
+            _clickHandler.RemoveDragEvents(OnScrollStart, OnScrollEnd);
         }
 
         private void Update()
@@ -58,7 +63,7 @@ namespace Assets.Scripts.Camera
             return targetPos;
         }
 
-        public void OnDragStart(Vector3 startPos)
+        public void OnScrollStart(Vector3 startPos)
         {
             if (PlayerController.PlayerState != PlayerState.Scrolling)
                 return;
@@ -67,7 +72,7 @@ namespace Assets.Scripts.Camera
             _isScrolling = true;
         }
 
-        public void OnDragEnd(Vector3 endPos)
+        public void OnScrollEnd(Vector3 endPos)
         {
             if (PlayerController.PlayerState != PlayerState.Scrolling)
                 return;
